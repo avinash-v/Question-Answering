@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Services</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="HostSpace template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="styles/bootstrap-4.1.2/bootstrap.min.css">
+<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="styles/services.css">
+<link rel="stylesheet" type="text/css" href="styles/services_responsive.css">
+
+<script type="text/javascript">
+
+	obj = 
+	{
+		xhr : new XMLHttpRequest() ,
+		
+		getDetails: function()
+		{
+			var answer = document.getElementById("answer");
+    		answer.style.display = "block";
+    		answer.innerHTML = "Your answer will be shown here"
+
+			text = document.getElementById("text");
+			question = document.getElementById("question");		
+			
+			if(text == null || text.value == "")
+			{	
+				document.getElementById("question").value = "";
+				document.getElementById("answer").value = "";
+				return;
+			}
+	
+			//set the event, register for change in readyState
+			this.xhr.onreadystatechange = this.updateFields;
+			
+			//open a connection
+			this.xhr.open("POST" , "http://127.0.0.1:5000/recommendation" , true);
+			this.xhr.setRequestHeader('Content-type', 'application/json');
+			this.xhr.send(JSON.stringify({'text': text.value, 'question': question.value}));
+			alert(JSON.stringify({'text': text.value, 'question': question.value}));
+			//this.xhr.send();
+	
+		} ,
+		updateFields : function(str)
+		{
+			//check for succes and readyState == 4
+			if(obj.xhr.readyState == 4 && obj.xhr.status == 200){
+				retvals = obj.xhr.response;
+	
+				result = JSON.parse(retvals);
+				console.log(result);
+	
+				document.getElementById("answer").innerHTML = result;
+				
+	
+					//document.getElementById("des").value = .isbn;
+				//document.getElementById("title").value = book.title;
+				//document.getElementById("author").value = book.author;
+				//document.getElementById("price").value = book.price;
+	
+				obj.xhr.abort();
+			}
+	
+	
+		}
+	
+	}
+	
+	function validate(){
+		if(document.getElementById("text").value == ""){
+			alert("Please fill the text field")
+			return false;
+		}
+		else return true;
+	}
+
+	function show() {
+	var questDiv = document.getElementById("questDiv");
+			if (questDiv.style.display === "none") {
+				questDiv.style.display = "block";
+			} else {
+				questDiv.style.display = "none";
+			}
+    
+}
+	
+	</script>
+
+</head>
+<body>
+
+<div class="super_container">
+	
+	<!-- Header -->
+
+	<header class="header trans_400">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_content d-flex flex-row align-items-center justify-content-start trans_400">
+						<div class="logo"><a href="http://pes.edu/">Know it all <span>Bot</span></a></div>
+						<nav class="main_nav ml-auto mr-auto">
+							<ul class="d-flex flex-row align-items-center justify-content-start">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="about.html">About us</a></li>
+								<li class="active"><a href="services.html">Upload Text</a></li>
+								<li><a href="blog.html">Blog</a></li>
+								<li><a href="contact.html">Contact</a></li>
+							</ul>
+						</nav>
+						<div class="log_reg">
+							<div class="log_reg_content d-flex flex-row align-items-center justify-content-start">
+								<div class="login log_reg_text"><a href="#">Login</a></div>
+								<div class="register log_reg_text"><a href="#">Register</a></div>
+							</div>
+						</div>
+						<div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Menu -->
+	
+	<div class="menu_overlay trans_400"></div>
+	<div class="menu trans_400">
+		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+		<div class="log_reg">
+			<div class="log_reg_content d-flex flex-row align-items-center justify-content-end">
+				<div class="login log_reg_text"><a href="#">Login</a></div>
+				<div class="register log_reg_text"><a href="#">Register</a></div>
+			</div>
+		</div>
+		<nav class="menu_nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="about.html">About us</a></li>
+				<li><a href="services.html">Upload Text</a></li>
+				<li><a href="blog.html">Blog</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<!-- Home -->
+
+	<div class="home">
+		<div class="home_background"></div>
+		<div class="background_image background_city" style="background-image:url(images/city_3.png)"></div>
+		<div class="cloud cloud_1"><img src="images/cloud.png" alt=""></div>
+		<div class="cloud cloud_2"><img src="images/cloud.png" alt=""></div>
+		<div class="cloud cloud_3"><img src="images/cloud_full_2.png" alt=""></div>
+		<div class="cloud cloud_4"><img src="images/cloud.png" alt=""></div>
+		<div class="home_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="home_content">
+							<div class="home_title">Upload Text</div>
+							<div class="breadcrumbs">
+								<ul class="d-flex flex-row align-items-center justify-content-start">
+									<li><a href="index.html">Home</a></li>
+									<li>Upload Text</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div>
+		<div class="container">
+			<h1> Add Your text here to analyse : </h1>
+			<form>
+				<div class="form-group">
+				  <textarea class="form-control" rows="8" id="text" placeholder="Add your text here... "></textarea>
+				</div>
+				<button type="button" onclick="show()" class="btn btn-primary">Save Text</button>
+			 </form>
+			 <div id="questDiv" style="display:none">
+				<textarea  id="question" class="form-control" rows="2" id="comment" placeholder="Add your question here... "></textarea>
+				<button type="button" onclick="obj.getDetails()" class="btn btn-primary">Answer</button>
+				<p class="form-control" id="answer" style="display:none"> </p>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Footer -->
+
+	<footer class="footer magic_fade_in">
+		<div class="container">
+			<div class="row">
+
+				<div class=" footer_col magic_fade_in">
+					<div class="footer_about">
+						<div class="footer_logo">Know it all <span>Bot</span></div>
+						<div class="footer_text">
+							<p>
+							Thank You for visiting the site . If you think we can make any improvements , Please contact the Admins of the page through the 'Contact Us' Page
+							</p>
+						</div>
+					</div>
+					<div class="contact_container">
+						<form action="#" id="contact_form" class="contact_form">
+							<div class="row">
+								<div class="col-md-6">
+									<input type="text" class="contact_input" placeholder="Your Name" required="required">
+								</div>
+								<div class="col-md-6">
+									<input type="email" class="contact_input" placeholder="Your e-mail" required="required">
+								</div>
+							</div>
+							<div>
+								<textarea class="contact_input contact_textarea" placeholder="Message" required="required"></textarea>
+							</div>
+							<button class="contact_button">Send</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="styles/bootstrap-4.1.2/popper.js"></script>
+<script src="styles/bootstrap-4.1.2/bootstrap.min.js"></script>
+<script src="plugins/greensock/TweenMax.min.js"></script>
+<script src="plugins/greensock/TimelineMax.min.js"></script>
+<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="plugins/greensock/animation.gsap.min.js"></script>
+<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="plugins/easing/easing.js"></script>
+<script src="plugins/progressbar/progressbar.min.js"></script>
+<script src="plugins/parallax-js-master/parallax.min.js"></script>
+<script src="js/services.js"></script>
+</body>
+</html>

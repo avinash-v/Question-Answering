@@ -1,0 +1,13 @@
+Enterprise Resource Planning
+Algorithms for Information Retrieval
+Content Management
+Computer Vision
+Advanced Machine Learning
+Wireless Network Communications
+Information Security
+Web Services
+Algorithms for Intelligent Web
+Social Network Analytics
+Computer Systems Performance Analysis
+Design Patterns
+Autonomous Mobile Robotics
